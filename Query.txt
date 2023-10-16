@@ -1,6 +1,6 @@
 esercizio 1
-SELECT nome, cognome from clienti
-WHERE data_di_nascita = 1982
+SELECT * from cliente
+WHERE EXTRACT (YEAR FROM data_di_nascita) = 1982
 
 esercizio 2
 SELECT COUNT(*) FROM fatture
