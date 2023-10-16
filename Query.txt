@@ -3,11 +3,11 @@ SELECT * from cliente
 WHERE EXTRACT (YEAR FROM data_di_nascita) = 1982
 
 esercizio 2
-SELECT COUNT(*) FROM fatture
+SELECT COUNT(*) FROM fattura
 WHERE iva = 20
 
 esercizio 3
-SELECT data_fattura, COUNT(*) as numero_di_fatture, SUM(importo) as somma_importi_fatture FROM fatture
+SELECT data_fattura, COUNT(*) as numero_di_fatture, SUM(importo) as somma_importi_fatture FROM fattura
 GROUP BY data_fattura
 
 esercizio 4
@@ -15,18 +15,25 @@ SELECT * FROM prodotti
 WHERE EXTRACT(YEAR FROM data_attivazione) = 2017 AND (in_produzione = true OR in_commercio = true)
 
 esercizio 5
-SELECT data_fattura, COUNT(*) as numero_fatture FROM fatture
+SELECT data_fattura, COUNT(*) as numero_fatture FROM fattura
 WHERE iva = 20
 GROUP BY data_fattura
 
 esercizio 6
-SELECT data_fattura FROM fatture
+SELECT data_fattura FROM fattura
 WHERE tipologia = 'A'
-GROUP BY data_fatture
+GROUP BY data_fattura
 HAVING COUNT(*) > 2
 
 esercizio 7
-SELECT numero_fattura, importo, iva, data_fattura, denominazione FROM fatture
-WHERE fornitori IN(SELECT denominazione FROM fornitori)
+SELECT fa.numero_fattura, fa.importo, fa.iva, fa.data_fattura, f.denominazione 
+FROM fattura fa, fornitori f
+WHERE fa.numero_fornitore = f.numero_fornitore
 
 esercizio 8
+SELECT c.regione_residenza, SUM(fa.importo) 
+FROM fattura fa, cliente c 
+WHERE fa.id_cliente = c.numero_cliente
+GROUP BY c.regione_residenza;
+
+esercizio 9
