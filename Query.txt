@@ -37,3 +37,12 @@ WHERE fa.id_cliente = c.numero_cliente
 GROUP BY c.regione_residenza;
 
 esercizio 9
+SELECT c.nome, COUNT(*) FROM cliente c, fattura fa
+WHERE EXTRACT(YEAR FROM c.data_di_nascita) = 1980 
+AND fa.id_cliente = c.numero_cliente 
+AND fa.importo > 50
+GROUP BY c.nome;
+
+esercizio 10
+SELECT CONCAT(nome, ' - ', cognome) as Denominazione FROM cliente
+WHERE regione_residenza = 'Lombardia'
